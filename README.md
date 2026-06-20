@@ -29,5 +29,5 @@ Environment: Google Colab
 
 ## Files
 
-- `Options_Pricing_Engine_BS_MC_IV.ipynb` — full notebook with all three stages
+- `Options_Pricing_Engine_(BS,MC,IV).ipynb` — full notebook with all three stages
 - `Writeup.txt` — one-page market analysis writeup
