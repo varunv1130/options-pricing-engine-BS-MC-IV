@@ -15,7 +15,7 @@ calibrated to live market data.
 ## Key findings (June 2026)
 
 SPY ATM implied vol is ~15%, roughly in line with 30-day realised vol 
-of 15.24% — suggesting options are fairly priced with no strong 
+of 15.24%, suggesting options are fairly priced with no strong 
 structural edge for buyers or sellers. The put skew is moderate, 
 consistent with the VIX having normalised from a spike of 31 in 
 March 2026.
