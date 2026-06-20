@@ -20,7 +20,7 @@ structural edge for buyers or sellers. The put skew is moderate,
 consistent with the VIX having normalised from a spike of 31 in 
 March 2026.
 
-See `writeup.txt' for full market analysis.
+See `Writeup.txt` for full market analysis.
 
 ## Tech stack
 
@@ -29,5 +29,5 @@ Environment: Google Colab
 
 ## Files
 
-- `Options Pricing Engine.ipynb` — full notebook with all three stages
-- `writeup.txt` — one-page market analysis writeup
+- `Options_Pricing_Engine_BS_MC_IV.ipynb` — full notebook with all three stages
+- `Writeup.txt` — one-page market analysis writeup
