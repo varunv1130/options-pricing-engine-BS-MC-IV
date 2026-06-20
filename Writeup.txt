@@ -1,0 +1,49 @@
+
+SPY Implied Volatility Surface Market Analysis: Options Pricing Engine Project writeup
+June 2026
+
+Overview 
+This project implements an options pricing engine in Python covering three methodologies: an analytical Black-Scholes pricer with full Greeks, a Monte Carlo simulation engine for path-dependent exotic options, and a live implied volatility surface calibrated to real SPY options market data from the Yahoo Finance API. 
+
+Methodology
+
+Black-Scholes & Greeks
+
+European call and put options were priced analytically using the Black-Scholes formula. All four first-order Greeks were derived: delta (directional exposure), gamma (convexity of delta), vega (volatility sensitivity), and theta (time decay). For an at-the-money option with T=1 yr, the model prices a call at approximately £10.45 with delta -0.64 and vega -0.375 per vol point. 
+
+Monte Carlo
+
+A vectorised Geometric Brownian Motion simulation (10,000 paths, 252 steps) was implemented to price path-dependent options where no closed-form solution exists. Two exotic structures were priced: an Asian call (payoff on average price over the path) and an up-and-out barrier call (knocked out at 120% of spot). The Asian call priced below the equivalent vanilla, consistent with theory: averaging saturates extreme outcomes and reduces expected payoff. Monte Carlo prices converged within £0.05 of the Black-Scholes benchmark for 
+vanilla options, validating the simulation. 
+
+Implied Volatility Surface
+
+Market prices for SPY options across six expiry dates were pulled from live market data. For each strike, implied volatility was back-solved numerically by inverting the Black-Scholes formula. The resulting surface reveals two structural features of current equity vol markets: 
+
+	1. OTM puts (strikes below spot) carry higher implied vol than ATM or OTM calls. This reflects persistent demand for crash protection from institutional hedgers, a structural feature of equity vol markets since Black Monday in 1987. 
+	2. Near-term implied vol (approx. 15%) is roughly flat to longer-dated expiries, consistent with a market that has recently de-escalated from elevated uncertainty rather than one pricing in imminent near-term risk. 
+
+
+Current Market Context
+
+At time of writing, SPY ATM implied volatility is —15%, implying expected daily moves of approximately +-0.94% This compares to: 
+
+Metric 	Level
+ATM Implied Vol (SPY, approx. 30 days) 	Approx. 15%
+VIX (SPX 30-day implied Vol) 	16.78
+30-day Realised Vol 	15.24%
+Vol premium (IV - RV) 	Approx 0.24%
+
+The vol premium is effectively zero. Historically, implied vol trades at a structural premium to realised vol (the "variance risk premium") because option sellers demand compensation for bearing tail risk. The current compression of this premium reflects a market that has rapidly repriced from a VIX spike of 31 in late March 2026 (driven by energy-linked inflation and geopolitical tensions) back toward long-run average levels (approx. 19). This suggests options are fairly valued rather than offering a clear structural edge to either buyers or sellers. 
+
+Interpretation & Trading Implications 
+
+
+The steepness of the put skew relative to its historical average measures how much tail risk the market is pricing 
+above and beyond normal vol. A steepening skew signals rising institutional demand for downside protection, often a leading indicator of broader risk-off positioning. The current skew is moderate, consistent with the VIX having normalised from elevated levels. 
+
+When implied vol trades significantly above realised vol (a wide variance risk premium), systematic vol sellers tend to extract consistent returns. When the premium collapses, as now, that edge narrows. Traders would currently be neutral on vol selling strategies and watching for a re-widening. 
+
+The Monte Carlo results illustrate why path-dependent structures trade at a discount to vanilla options. Asian options dampen payoff variance and barrier options introduce knock-out risk. Such relationships are used to construct risk appetite representative profiles. 
+
+Technical stack: Python (NumPy, SciPy, Matplotlib, yfinance). Google Colab Full source code available on request.
